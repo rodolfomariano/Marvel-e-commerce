@@ -1,12 +1,27 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import { Footer } from '../components/Footer'
+
 import { Header } from '../components/Header'
-import styles from '../styles/Home.module.css'
+
+import {
+  Head,
+  Main,
+  Wrap
+} from '../styles/home'
 
 const Home: NextPage = () => {
   return (
-    <Header />
+    <Head>
+      <Header />
+      <Main>
+        <Wrap>
+          <h1>oi</h1>
+
+        </Wrap>
+
+      </Main>
+      <Footer />
+    </Head>
   )
 }
 
