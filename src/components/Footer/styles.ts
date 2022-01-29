@@ -87,7 +87,8 @@ export const Input = styled.input`
 export const Button = styled.button`
   background-color: var(--gray-600);
   color: #fff;
-  padding: 0 .25rem;
+  font-size: 14px;
+  padding: 0 .5rem;
   border: none;
   text-transform: uppercase;
   transition: filter 300ms;
@@ -147,7 +148,7 @@ export const SocialButton = styled.button`
 export const CopyRight = styled.h3`
   text-align: center;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 14px;
   padding-bottom: 1rem;
   color: var(--gray-700);
 `

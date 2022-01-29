@@ -11,8 +11,8 @@ export const Head = styled.body`
 export const Main = styled.main`
   flex: 1;
   width: 100%;
-  
-  background-color: var(--gray-500);
+  padding-bottom: 3rem;
+  background-color: var(--bg-color);
 `
 export const Wrap = styled.div`
   max-width: 1200px;

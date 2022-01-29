@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { Footer } from '../components/Footer'
 
 import { Header } from '../components/Header'
+import { SmallCardDearest } from '../components/SmallCardDearest'
 
 import {
   Head,
@@ -16,6 +17,8 @@ const Home: NextPage = () => {
       <Main>
         <Wrap>
           <h1>oi</h1>
+
+          <SmallCardDearest />
 
         </Wrap>
 

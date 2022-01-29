@@ -22,11 +22,12 @@
   --gray-100: #EBEBEB;
   --gray-400: #A9A9A9;
   --gray-500: #959494;
-  --gray-600: #767676;
+  --gray-600: #767676; 
   --gray-700: #434444;
 
-  --gold-dark: #B8860B;
-  --gold-light: rgba(243, 202, 76, 9);
+  --gold-dark: rgb(184, 134, 11, .9);
+  --gold-light: #f3ca4c;
+  --bg-dark-transparent: rgb(51, 51, 51, .9);
 }
 
 @media (max-width: 1080px) {
