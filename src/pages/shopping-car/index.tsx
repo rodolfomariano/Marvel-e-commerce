@@ -4,6 +4,7 @@ import { FaBoxOpen, FaMapMarkedAlt, FaWallet, FaCheck } from 'react-icons/fa'
 
 import { Footer } from '../../components/Footer'
 import { Header } from '../../components/Header'
+import { RequestCard } from '../../components/RequestCard'
 
 import {
   Body,
@@ -78,7 +79,7 @@ export default function ShoppingCar() {
 
           <CarContainer>
             <RequestsList>
-
+              <RequestCard />
             </RequestsList>
 
             <ValueContainer>

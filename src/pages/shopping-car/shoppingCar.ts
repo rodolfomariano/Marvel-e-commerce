@@ -95,7 +95,7 @@ export const StepText = styled.text`
 `
 
 export const CarContainer = styled.section`
-
+  padding-top: 3rem;
 `
 
 export const RequestsList = styled.div`
