@@ -1,5 +1,6 @@
-
 import Link from 'next/link'
+import { FaHeart } from 'react-icons/fa'
+
 import { CardHqDetails } from '../components/CardHqDetails'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
@@ -10,7 +11,21 @@ import {
   Wrap,
   BreadcrumbContainer,
   PageTitle,
-  HQToBuyDetailsContainer
+  HQToBuyDetailsContainer,
+  BuyCardContainer,
+  HQAvailability,
+  Text,
+  HQPrice,
+  FormFretContainer,
+  Label,
+  Content,
+  Input,
+  SimulateShippingButton,
+  IDontKnowCEP,
+  BuyCardFooter,
+  Actions,
+  AddToCarButton,
+  AddToFavoritesButton
 } from '../styles/hq'
 
 export default function HQ() {
@@ -30,6 +45,38 @@ export default function HQ() {
 
           <HQToBuyDetailsContainer>
             <CardHqDetails />
+
+            <BuyCardContainer>
+              <HQAvailability>
+                <Text>Disponibilidade: Pronta entrega</Text>
+              </HQAvailability>
+
+              <HQPrice>R$ 35, 50</HQPrice>
+
+              <FormFretContainer>
+                <Label>Consulte o prazo de entrega</Label>
+
+                <Content>
+                  <Input placeholder='Digite o CEP' />
+
+                  <SimulateShippingButton>Consultar</SimulateShippingButton>
+                </Content>
+
+                <IDontKnowCEP>Não sei meu CEP</IDontKnowCEP>
+              </FormFretContainer>
+
+              <BuyCardFooter>
+                <Actions>
+                  <AddToCarButton>Add to car</AddToCarButton>
+
+                  <AddToFavoritesButton>
+                    <FaHeart size={20} />
+                  </AddToFavoritesButton>
+                </Actions>
+
+              </BuyCardFooter>
+            </BuyCardContainer>
+
           </HQToBuyDetailsContainer>
 
         </Wrap>
