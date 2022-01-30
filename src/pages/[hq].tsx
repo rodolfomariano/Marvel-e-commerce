@@ -4,6 +4,7 @@ import { FaHeart } from 'react-icons/fa'
 import { CardHqDetails } from '../components/CardHqDetails'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
+import { SmallCard } from '../components/SmallCard'
 
 import {
   Body,
@@ -25,7 +26,9 @@ import {
   BuyCardFooter,
   Actions,
   AddToCarButton,
-  AddToFavoritesButton
+  AddToFavoritesButton,
+  YouCanLikeTitle,
+  YouCanLikeContainer
 } from '../styles/hq'
 
 export default function HQ() {
@@ -78,6 +81,15 @@ export default function HQ() {
             </BuyCardContainer>
 
           </HQToBuyDetailsContainer>
+
+          <YouCanLikeTitle>Você pode gostar!</YouCanLikeTitle>
+
+          <YouCanLikeContainer>
+            <SmallCard />
+            <SmallCard />
+            <SmallCard />
+            <SmallCard />
+          </YouCanLikeContainer>
 
         </Wrap>
       </Main>

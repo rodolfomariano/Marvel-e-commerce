@@ -51,6 +51,7 @@ export const PageTitle = styled.h1`
 
 export const HQToBuyDetailsContainer = styled.section`
   margin-top: 1.5rem;
+  margin-bottom: 4.5rem;
 
   display: flex;
   justify-content: space-between;
@@ -197,4 +198,18 @@ export const AddToFavoritesButton = styled.button`
   &:hover {
     filter: brightness(.9);
   }
+`
+export const YouCanLikeTitle = styled.h3`
+  letter-spacing: 0.05em;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: var(--title-color);
+  font-weight: 600;
+`
+
+export const YouCanLikeContainer = styled.div`
+  overflow-x: auto;
+  padding: 2rem .5rem;
+
+  display: flex;
+  gap: 1.5rem;
 `

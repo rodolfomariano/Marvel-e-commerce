@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  flex: none;
   position: relative;
   width: 180px;
   box-shadow: 0 0 4px var(--gray-500);
