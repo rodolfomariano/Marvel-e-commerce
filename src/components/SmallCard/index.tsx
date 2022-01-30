@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { FaCrown, FaStar, FaStarHalfAlt, FaHeart } from 'react-icons/fa'
+import { FaCrown, FaStar, FaStarHalfAlt, FaShoppingCart, FaHeart } from 'react-icons/fa'
 
 import Wolverine from '../../assets/images/wolverine.png'
 
@@ -13,15 +13,14 @@ import {
   RareTag,
   RareContent,
   RateText,
-  ImageFooter,
+  HQTitleContainer,
   HQTitle,
   KnowMoreButton,
-  Footer,
   AddToCarButton,
   AddToFavoritesButton
 } from './styles'
 
-export function SmallCardDearest() {
+export function SmallCard() {
   return (
     <Container>
       <ImageContainer>
@@ -29,11 +28,11 @@ export function SmallCardDearest() {
           <Price>R$ 35,50</Price>
 
           <StarsContainer>
-            <FaStar size={20} />
-            <FaStar size={20} />
-            <FaStar size={20} />
-            <FaStar size={20} />
-            <FaStarHalfAlt size={20} />
+            <FaStar size={12} />
+            <FaStar size={12} />
+            <FaStar size={12} />
+            <FaStar size={12} />
+            <FaStarHalfAlt size={12} />
           </StarsContainer>
 
           <RareTag>
@@ -44,22 +43,23 @@ export function SmallCardDearest() {
           </RareTag>
         </ImageHeader>
 
-        <Image alt='image' src={Wolverine} width={222} height={336} />
+        <Image alt='image' src={Wolverine} width={100} height={154} />
 
-        <ImageFooter>
-          <HQTitle>Wolverine o imortal</HQTitle>
-        </ImageFooter>
       </ImageContainer>
+
+      <HQTitleContainer>
+        <HQTitle>Wolverine o imortal</HQTitle>
+      </HQTitleContainer>
 
       <KnowMoreButton>Saiba Mais</KnowMoreButton>
 
-      <Footer>
-        <AddToCarButton>Add to car</AddToCarButton>
+      <AddToCarButton>
+        <FaShoppingCart size={20} color='#FFFFFF' />
+      </AddToCarButton>
 
-        <AddToFavoritesButton>
-          <FaHeart size={20} />
-        </AddToFavoritesButton>
-      </Footer>
+      <AddToFavoritesButton>
+        <FaHeart size={20} color='#FFFFFF' />
+      </AddToFavoritesButton>
 
     </Container>
   )
