@@ -38,7 +38,7 @@ export const DearestTitle = styled.h2`
 export const DearestContentList = styled.div`
   overflow-x: auto;
   margin-bottom: 3rem;
-  padding: 1rem 0;
+  padding: 1rem .25rem;
 
   display: flex;
   gap: 1.5rem;
@@ -139,4 +139,10 @@ export const FilterChoiceButton = styled.button`
 
 export const HQsList = styled.section`
   margin: 4rem 0 5rem;
+
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  justify-content: center;
+  justify-items: center;
 `

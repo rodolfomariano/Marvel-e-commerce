@@ -27,6 +27,7 @@ import {
   HQsList
 } from '../styles/home'
 import { SmallCard } from '../components/SmallCard'
+import { CardDearest } from '../components/CardDearest'
 
 const Home: NextPage = () => {
   return (
@@ -42,6 +43,9 @@ const Home: NextPage = () => {
               <SmallCardDearest />
               <SmallCardDearest />
               <SmallCardDearest />
+
+              <CardDearest />
+              <CardDearest />
 
             </DearestContentList>
           </DearestContainer>
@@ -75,6 +79,10 @@ const Home: NextPage = () => {
             </FilterContainer>
 
             <HQsList>
+              <SmallCard />
+              <SmallCard />
+              <SmallCard />
+              <SmallCard />
               <SmallCard />
             </HQsList>
 
