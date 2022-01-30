@@ -32,11 +32,11 @@ export function CardDearest() {
         <Image alt='image' src={Wolverine} width={140} height={212} />
 
         <RareTag>
-            <RareContent>
-              <FaCrown size={20} />
-              <RateText>Raro</RateText>
-            </RareContent>
-          </RareTag>
+          <RareContent>
+            <FaCrown size={20} />
+            <RateText>Raro</RateText>
+          </RareContent>
+        </RareTag>
       </ImageContainer>
 
       <CardContent>

@@ -9,7 +9,45 @@ export const Container = styled.div`
 
   display: flex;
   align-items: center;
-  `
+`
+
+export const ImageContainer = styled.div`
+  position: relative;
+  flex: none;
+  width: 90px;
+  height: 136px;
+  margin-right: 1.5rem;
+`
+
+export const RareTag = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 30px;
+  background-color: var(--gold-dark);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+`
+
+export const RareContent = styled.div`
+  color: var(--gold-light);
+
+  display: flex;
+  align-items: center;
+
+`
+
+export const RateText = styled.div`
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-left: .5rem;
+  font-size: 1rem;
+`
+
 export const Content = styled.div`
   width: 100%;
 

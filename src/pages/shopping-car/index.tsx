@@ -18,7 +18,31 @@ import {
   StepText,
   CarContainer,
   RequestsList,
-  ValueContainer
+  ValueContainer,
+  SubTotal,
+  SubTotalText,
+  Span,
+  SubTotalValue,
+  Divider,
+  CouponContainer,
+  Coupon,
+  CouponLabel,
+  CouponInput,
+  CouponMessage,
+  DiscountContainer,
+  DiscountLabel,
+  DiscountResult,
+  FormFretContainer,
+  Label,
+  Content,
+  Input,
+  SimulateShippingButton,
+  IDontKnowCEP,
+  TotalContainer,
+  TotalLabel,
+  Value,
+  ContinueButton,
+  BuyMoreButton
 } from './shoppingCar'
 
 export default function ShoppingCar() {
@@ -80,9 +104,58 @@ export default function ShoppingCar() {
           <CarContainer>
             <RequestsList>
               <RequestCard />
+              <RequestCard />
             </RequestsList>
 
             <ValueContainer>
+              <SubTotal>
+                <SubTotalText>Subtotal <Span>(1 item)</Span></SubTotalText>
+
+                <SubTotalValue>R$ 35,50</SubTotalValue>
+              </SubTotal>
+
+              <Divider />
+
+              <CouponContainer>
+                <Coupon>
+                  <CouponLabel>Cupom de desconto</CouponLabel>
+                  <CouponInput />
+                </Coupon>
+
+                <CouponMessage>Cupom HQ RARO aplicado</CouponMessage>
+              </CouponContainer>
+
+              <Divider />
+
+              <DiscountContainer>
+                <DiscountLabel>Desconto</DiscountLabel>
+                <DiscountResult>R$ 1,77</DiscountResult>
+              </DiscountContainer>
+
+              <Divider />
+
+              <FormFretContainer>
+                <Label>Consulte o prazo de entrega</Label>
+
+                <Content>
+                  <Input placeholder='Digite o CEP' />
+
+                  <SimulateShippingButton>Consultar</SimulateShippingButton>
+                </Content>
+
+                <IDontKnowCEP>Não sei meu CEP</IDontKnowCEP>
+              </FormFretContainer>
+
+              <Divider />
+
+              <TotalContainer>
+                <TotalLabel>Valor total:</TotalLabel>
+                <Value>R$ 33,72</Value>
+              </TotalContainer>
+
+              <ContinueButton>Continuar</ContinueButton>
+
+              <BuyMoreButton>Comprar mais</BuyMoreButton>
 
             </ValueContainer>
           </CarContainer>
