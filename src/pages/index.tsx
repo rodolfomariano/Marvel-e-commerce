@@ -7,7 +7,7 @@ import { Header } from '../components/Header'
 import { SmallCardDearest } from '../components/SmallCardDearest'
 
 import {
-  Head,
+  Body,
   Main,
   Wrap,
   DearestContainer,
@@ -31,7 +31,7 @@ import { CardDearest } from '../components/CardDearest'
 
 const Home: NextPage = () => {
   return (
-    <Head>
+    <Body>
       <Header />
       <Main>
         <Wrap>
@@ -92,7 +92,7 @@ const Home: NextPage = () => {
 
       </Main>
       <Footer />
-    </Head>
+    </Body>
   )
 }
 
