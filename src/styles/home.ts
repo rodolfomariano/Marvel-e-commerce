@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Body = styled.body`
+export const Body = styled.div`
   width: 100%;
   min-height: 100vh;
 
@@ -92,7 +92,7 @@ export const SearchButton = styled.button`
   }
 `
 
-export const SearchResult = styled.text`
+export const SearchResult = styled.label`
   display: inline-block;
   color: var(--text-color);
   font-weight: 500;
@@ -106,7 +106,7 @@ export const FilterContainer = styled.div`
   align-items: center;
   gap: .5rem;
 `
-export const Label = styled.text`
+export const Label = styled.label`
   color: var(--text-color);
 
   @media(max-width: 500px) {

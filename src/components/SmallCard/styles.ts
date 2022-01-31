@@ -28,7 +28,7 @@ export const ImageHeader = styled.div`
   align-items: center;
   justify-content: space-between;
 `
-export const Price = styled.text`
+export const Price = styled.span`
   color: #FFFFFF;
   font-weight: 500;
   font-size: 14px;

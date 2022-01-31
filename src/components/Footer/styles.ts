@@ -37,7 +37,7 @@ export const Contact = styled.div`
 
 `
 
-export const ContactText = styled.text`
+export const ContactText = styled.span`
   font-size: 14px;
 `
 
@@ -98,7 +98,7 @@ export const Button = styled.button`
   }
 `
 
-export const TitleButton = styled.text`
+export const TitleButton = styled.span`
 `
 export const SocialMediaContainer = styled.section`
   width: 160px;
@@ -114,7 +114,7 @@ export const SocialMediaContainer = styled.section`
   
 `
 
-export const SocialMediaTitle = styled.text`
+export const SocialMediaTitle = styled.span`
   font-size: 1.5rem;
   font-weight: 500;
 

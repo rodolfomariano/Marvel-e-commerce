@@ -20,12 +20,18 @@ import {
   AddToFavoritesButton
 } from './styles'
 
-export function SmallCard() {
+interface SmallCardProps {
+  title: string
+  price: number
+  image: string
+}
+
+export function SmallCard({ title, price, image }: SmallCardProps) {
   return (
     <Container>
       <ImageContainer>
         <ImageHeader>
-          <Price>R$ 35,50</Price>
+          <Price>R$ {price}</Price>
 
           <StarsContainer>
             <FaStar size={12} />
@@ -43,12 +49,12 @@ export function SmallCard() {
           </RareTag>
         </ImageHeader>
 
-        <Image alt='image' src={Wolverine} width={100} height={154} />
+        <Image alt='image' src={image} width={100} height={154} />
 
       </ImageContainer>
 
       <HQTitleContainer>
-        <HQTitle>Wolverine o imortal</HQTitle>
+        <HQTitle>{title.length > 18 ? `${title.substring(0, 18)}...` : title}</HQTitle>
       </HQTitleContainer>
 
       <KnowMoreButton>Saiba Mais</KnowMoreButton>

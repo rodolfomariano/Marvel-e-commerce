@@ -113,7 +113,7 @@ export const Footer = styled.footer`
   justify-content: space-between;
 `
 
-export const Price = styled.text`
+export const Price = styled.span`
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--red);
