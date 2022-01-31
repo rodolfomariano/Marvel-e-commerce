@@ -146,3 +146,79 @@ export const HQsList = styled.section`
   justify-content: center;
   justify-items: center;
 `
+
+export const PaginationContainer = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const ButtonsContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+`
+
+export const PreviousButton = styled.button`
+  width: 2rem;
+  height: 2rem;
+  border-radius: .25rem;
+  border: none;
+  background-color: var(--gray-200);
+  color: var(--gray-500);
+  transition: filter 300ms;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    filter: brightness(.9);
+  }
+
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+`
+
+export const NextButton = styled.button`
+  width: 2rem;
+  height: 2rem;
+  border-radius: .25rem;
+  border: none;
+  background-color: var(--gray-200);
+  color: var(--gray-500);
+  transition: filter 300ms;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    filter: brightness(.9);
+  }
+
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+`
+
+export const PageButton = styled.button`
+  width: 2rem;
+  height: 2rem;
+  border-radius: .25rem;
+  border: none;
+  /* background-color: var(--gray-200); */
+  color: var(--gray-500);
+  transition: filter 300ms;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    filter: brightness(.9);
+  }
+`

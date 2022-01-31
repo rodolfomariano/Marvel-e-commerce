@@ -77,7 +77,7 @@ export const HQTitleContainer = styled.div`
   justify-content: center;
 `
 
-export const HQTitle = styled.text`
+export const HQTitle = styled.h3`
   color: var(--title-color);
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 1rem;

@@ -24,9 +24,10 @@ interface SmallCardProps {
   title: string
   price: number
   image: string
+  isRare?: true | false
 }
 
-export function SmallCard({ title, price, image }: SmallCardProps) {
+export function SmallCard({ title, price, image, isRare }: SmallCardProps) {
   return (
     <Container>
       <ImageContainer>
@@ -41,12 +42,15 @@ export function SmallCard({ title, price, image }: SmallCardProps) {
             <FaStarHalfAlt size={12} />
           </StarsContainer>
 
-          <RareTag>
-            <RareContent>
-              <FaCrown size={20} />
-              <RateText>Raro</RateText>
-            </RareContent>
-          </RareTag>
+          {isRare && (
+            <RareTag>
+              <RareContent>
+                <FaCrown size={20} />
+                <RateText>Raro</RateText>
+              </RareContent>
+            </RareTag>
+
+          )}
         </ImageHeader>
 
         <Image alt='image' src={image} width={100} height={154} />
@@ -54,7 +58,7 @@ export function SmallCard({ title, price, image }: SmallCardProps) {
       </ImageContainer>
 
       <HQTitleContainer>
-        <HQTitle>{title.length > 18 ? `${title.substring(0, 18)}...` : title}</HQTitle>
+        <HQTitle>{title.length > 16 ? `${title.substring(0, 16)}...` : title}</HQTitle>
       </HQTitleContainer>
 
       <KnowMoreButton>Saiba Mais</KnowMoreButton>
