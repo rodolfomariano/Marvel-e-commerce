@@ -60,7 +60,7 @@ export const Content = styled.div`
   }
 
 `
-export const HQTitle = styled.text`
+export const HQTitle = styled.h2`
   margin: 0 1rem;
   color: var(--title-color);
   font-family: 'Roboto Condensed', sans-serif;

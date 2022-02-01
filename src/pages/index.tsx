@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react'
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 
 import { FaSearch, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+
+import { api, apiAuthenticate } from '../services/api'
 
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { SmallCardDearest } from '../components/SmallCardDearest'
+import { SmallCard } from '../components/SmallCard'
+import { CardDearest } from '../components/CardDearest'
 
 import {
   Body,
@@ -33,10 +38,6 @@ import {
   PageButton
 } from '../styles/home'
 
-import { SmallCard } from '../components/SmallCard'
-import { CardDearest } from '../components/CardDearest'
-import { api } from '../services/api'
-
 interface HQ {
   id: number
   title: string
@@ -58,17 +59,14 @@ const Home: NextPage = () => {
   const [comicsList, setComicsList] = useState<HQ[]>([])
   const [currentOffset, setCurrentOffset] = useState(0)
   const [totalOfPages, setTotalOfPages] = useState(0)
-  const [rareHq, setRareHq] = useState(0)
 
-  const publicKey = process.env.NEXT_PUBLIC_KEY
-  const md5 = process.env.NEXT_PUBLIC_MD5
-  const ts = '1643628283'
+  const hqRareList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const [rareHq, setRareHq] = useState(Number(Math.floor(Math.random() * hqRareList.length)))
 
   let hqList: HQ[] = []
 
 
   useEffect(() => {
-    const hqRareList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     setRareHq(Number(Math.floor(Math.random() * hqRareList.length)))
 
@@ -77,7 +75,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
 
-    api.get(`comics?ts=${ts}&apikey=${publicKey}&hash=${md5}&limit=10&offset=${currentOffset}`)
+    api.get(`comics${apiAuthenticate}&limit=10&offset=${currentOffset}`)
       .then(response => {
 
         setTotalOfPages(response.data.data.total / 10)
@@ -86,10 +84,9 @@ const Home: NextPage = () => {
 
           const { id, title, modified, pageCount, prices, thumbnail, resourceURI, description } = hq as HQ
 
-          const fullThumbnail = `${thumbnail.path}.${thumbnail.extension}?ts=${ts}&apikey=${publicKey}&hash=${md5}`
+          const fullThumbnail = `${thumbnail.path}.${thumbnail.extension}${apiAuthenticate}`
 
           let hqPrice = 0
-
           prices.map(e => hqPrice = Number(e.price))
 
           const result = {
@@ -127,9 +124,6 @@ const Home: NextPage = () => {
       <Header />
       <Main>
         <Wrap>
-
-          <div>
-          </div>
 
           <DearestContainer>
             <DearestTitle>As mais queridas</DearestTitle>
@@ -178,6 +172,7 @@ const Home: NextPage = () => {
                 comicsList.map((e) => (
                   <SmallCard
                     key={e.id}
+                    hqID={e.id}
                     title={e.title}
                     price={e.hqPrice}
                     image={e.fullThumbnail}

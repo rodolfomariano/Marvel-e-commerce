@@ -29,7 +29,7 @@ export const ImageHeader = styled.div`
   align-items: center;
   justify-content: space-between;
 `
-export const Price = styled.text`
+export const Price = styled.span`
   color: #FFFFFF;
   font-weight: 500;
   font-size: 20px;
@@ -85,7 +85,7 @@ export const ImageFooter = styled.div`
   justify-content: center;
 `
 
-export const HQTitle = styled.text`
+export const HQTitle = styled.h2`
   color: #FFFFFF;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 1rem;

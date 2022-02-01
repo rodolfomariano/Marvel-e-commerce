@@ -33,18 +33,38 @@ import {
   FooterText
 } from './styles'
 
-export function CardHqDetails() {
+interface CardHqDetailsProps {
+  isRare: string | undefined | string[]
+  thumbnail: string
+  description: string
+  pageCount: number
+  date: string
+  creators: {
+    items: [
+      {
+        name: string
+      }
+    ]
+  }
+}
+
+export function CardHqDetails({ isRare, thumbnail, description, pageCount, date, creators }: CardHqDetailsProps) {
+  console.log(thumbnail)
   return (
     <Container>
       <ImageContainer>
-        <Image alt='image' src={Wolverine} />
+        <Image alt='image' src={thumbnail ? thumbnail : Wolverine} width={220} height={333} />
 
-        <RareTag>
-          <RareContent>
-            <FaCrown size={20} />
-            <RateText>Raro</RateText>
-          </RareContent>
-        </RareTag>
+        {isRare === 'true' && (
+          <RareTag>
+            <RareContent>
+              <FaCrown size={20} />
+              <RateText>Raro</RateText>
+            </RareContent>
+          </RareTag>
+
+        )}
+
       </ImageContainer>
 
       <CardContent>
@@ -61,7 +81,7 @@ export function CardHqDetails() {
         </Header>
 
         <DetailParagraph>
-          The mutants of earth have risen up and founded the nation of Krakoa… but that has not meant any less trouble for them. An all-star cast of creators bring you rotating adventures of the various mutants of the world and their friends and allies!
+          {description && description.length > 0 ? description : 'Quadrinho SHOW'}
         </DetailParagraph>
 
         <CreatorsContainer>
@@ -72,19 +92,22 @@ export function CardHqDetails() {
           </CreatorsIcon>
 
           <CreatorsList>
-            <Creator>Paul Smith</Creator>
+            {creators && creators.items.map((creator, index) => (
+              <Creator key={index}>{creator.name}</Creator>
+
+            ))}
           </CreatorsList>
         </CreatorsContainer>
 
         <Footer>
           <FooterContent>
             <FaBookOpen size={20} />
-            <FooterText>26 páginas</FooterText>
+            <FooterText>{pageCount > 0 ? pageCount : 10} páginas</FooterText>
           </FooterContent>
 
           <FooterContent>
             <FaCalendarAlt size={20} />
-            <FooterText>21/04/2021</FooterText>
+            <FooterText>{date}</FooterText>
           </FooterContent>
         </Footer>
 

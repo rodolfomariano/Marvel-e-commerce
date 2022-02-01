@@ -210,7 +210,6 @@ export const PageButton = styled.button`
   height: 2rem;
   border-radius: .25rem;
   border: none;
-  /* background-color: var(--gray-200); */
   color: var(--gray-500);
   transition: filter 300ms;
 

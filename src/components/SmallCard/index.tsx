@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 import { FaCrown, FaStar, FaStarHalfAlt, FaShoppingCart, FaHeart } from 'react-icons/fa'
 
@@ -21,13 +22,16 @@ import {
 } from './styles'
 
 interface SmallCardProps {
+  hqID: number
   title: string
   price: number
   image: string
-  isRare?: true | false
+  isRare: true | false
 }
 
-export function SmallCard({ title, price, image, isRare }: SmallCardProps) {
+export function SmallCard({ hqID, title, price, image, isRare }: SmallCardProps) {
+  const router = useRouter()
+
   return (
     <Container>
       <ImageContainer>
@@ -61,10 +65,24 @@ export function SmallCard({ title, price, image, isRare }: SmallCardProps) {
         <HQTitle>{title.length > 16 ? `${title.substring(0, 16)}...` : title}</HQTitle>
       </HQTitleContainer>
 
-      <KnowMoreButton>Saiba Mais</KnowMoreButton>
+      <KnowMoreButton
+        onClick={() => router.push({
+          pathname: `/hq/details/${hqID}`,
+          query: {
+            isRare,
+            hqID
+          }
+        })}
+      >
+        Saiba Mais
+      </KnowMoreButton>
 
       <AddToCarButton>
-        <FaShoppingCart size={20} color='#FFFFFF' />
+        <FaShoppingCart
+          size={20}
+          color='#FFFFFF'
+
+        />
       </AddToCarButton>
 
       <AddToFavoritesButton>

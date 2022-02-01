@@ -62,7 +62,7 @@ export const CardContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+
 `
 
 export const Header = styled.div`
@@ -118,7 +118,15 @@ export const CreatorsTitle = styled.h3`
 `
 
 export const CreatorsList = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem; 
+
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  justify-content: flex-start;
+  justify-items: flex-start;
+
+  
 `
 
 export const Creator = styled.button`
@@ -154,6 +162,6 @@ export const FooterContent = styled.div`
   }
 `
 
-export const FooterText = styled.text`
+export const FooterText = styled.span`
   margin-left: .5rem;
 `

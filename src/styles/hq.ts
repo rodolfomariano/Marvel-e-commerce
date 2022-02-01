@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Body = styled.body`
+export const Body = styled.div`
   width: 100%;
   min-height: 100vh;
 
@@ -87,12 +87,12 @@ export const HQAvailability = styled.div`
   
   `
 
-export const Text = styled.text`
+export const Text = styled.span`
   font-size: 12px;
 
 `
 
-export const HQPrice = styled.text`
+export const HQPrice = styled.span`
   display: inline-block;
   margin: 2.5rem 0 1rem;
   font-size: 1.75rem;
