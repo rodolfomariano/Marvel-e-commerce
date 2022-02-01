@@ -6,6 +6,9 @@ import { FaHeart } from 'react-icons/fa'
 
 import { Oval } from 'react-loader-spinner'
 
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import { api, apiAuthenticate, cepAPI } from '../services/api'
 
 import { CardHqDetails } from '../components/CardHqDetails'
@@ -88,6 +91,13 @@ export default function HQ() {
 
   const { hqID, isRare } = router.query
 
+  const notifyCepError = () => toast("Digite um CEP valido!", {
+    autoClose: 3000,
+    type: 'error',
+    closeButton: true,
+    theme: 'colored'
+  })
+
   function handleFindCEP(event: FormEvent) {
     event.preventDefault()
     setSearchingCEP(true)
@@ -116,6 +126,8 @@ export default function HQ() {
       }).catch(error => {
         console.log(error)
         setSearchingCEP(false)
+
+        notifyCepError()
       })
 
     setInputCEP('')
@@ -217,9 +229,9 @@ export default function HQ() {
                     </CepContent>
 
                     <DeliveryValue>
-                      <DeliveryLabel>Valor da entrega:</DeliveryLabel>
+                      <DeliveryLabel>Chega até</DeliveryLabel>
 
-                      <Value>R$ 10,00</Value>
+                      <Value>12 de abril</Value>
                     </DeliveryValue>
                   </FoundCEP>
                 )}
@@ -254,6 +266,7 @@ export default function HQ() {
       </Main>
 
       <Footer />
+      <ToastContainer />
     </Body>
   )
 }
