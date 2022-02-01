@@ -49,7 +49,7 @@ interface CardHqDetailsProps {
 }
 
 export function CardHqDetails({ isRare, thumbnail, description, pageCount, date, creators }: CardHqDetailsProps) {
-  console.log(thumbnail)
+
   return (
     <Container>
       <ImageContainer>

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useState } from 'react'
 
 import { FaBoxOpen, FaMapMarkedAlt, FaWallet, FaCheck } from 'react-icons/fa'
@@ -10,6 +11,7 @@ import {
   Body,
   Main,
   Wrap,
+  BreadcrumbContainer,
   PageTitle,
   StepsContainer,
   ProgressBar,
@@ -46,7 +48,7 @@ import {
 } from './shoppingCar'
 
 export default function ShoppingCar() {
-  const [progressBar, setProgressBar] = useState(66)
+  const [progressBar, setProgressBar] = useState(0)
 
   return (
     <Body>
@@ -54,6 +56,12 @@ export default function ShoppingCar() {
 
       <Main>
         <Wrap>
+          <BreadcrumbContainer>
+            <Link href='/'>
+              <a>Home</a>
+            </Link>
+          </BreadcrumbContainer>
+
           <PageTitle>Meu Carrinho</PageTitle>
 
           <StepsContainer>

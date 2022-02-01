@@ -24,16 +24,13 @@ export const Wrap = styled.div`
 
 export const BreadcrumbContainer = styled.div`
   margin: 2.5rem 0 1.5rem;
-
   
   a {
     text-transform: uppercase;
     color: var(--blue-action);
 
-
     &:hover {
       text-decoration: underline;
-
     }
 
   }
@@ -67,10 +64,10 @@ export const BuyCardContainer = styled.div`
   position: relative;
   flex: none;
   width: 322px;
-  /* min-height: 260px; */
-
+  max-height: 360px;
   box-shadow: 0 0 4px var(--gray-500);
   padding: 0 1.5rem 1.5rem;
+
 `
 
 export const HQAvailability = styled.div`

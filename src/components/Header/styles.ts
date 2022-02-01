@@ -4,6 +4,14 @@ export const Container = styled.header`
   width: 100%;
   height: 50px;
   background-color: #202020;
+
+  button {
+    transition: color 300ms;
+    
+    &:hover {
+      color: var(--blue);
+    }
+  }
 `
 
 export const Wrap = styled.div`
@@ -15,6 +23,13 @@ export const Wrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+export const ImageContainer = styled.button`
+  width: 100px;
+  height: 40px;
+  background: transparent;
+  border: none;
 `
 
 export const Actions = styled.div`

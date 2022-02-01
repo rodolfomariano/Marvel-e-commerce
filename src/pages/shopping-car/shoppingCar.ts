@@ -22,6 +22,20 @@ export const Wrap = styled.div`
   padding: 0 8px;
 `
 
+export const BreadcrumbContainer = styled.div`
+  margin: 2.5rem 0 1.5rem;
+  
+  a {
+    text-transform: uppercase;
+    color: var(--blue-action);
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+  }
+`
+
 export const PageTitle = styled.h1`
   font-size: 22px;
   text-transform: uppercase;
@@ -79,7 +93,7 @@ export const Step = styled.div`
 
 `
 
-export const StepText = styled.text`
+export const StepText = styled.span`
   position: absolute;
   bottom: -30px;
   width: 70px;
@@ -267,12 +281,12 @@ export const TotalContainer = styled.div`
   justify-content: space-between;
 `
 
-export const TotalLabel = styled.text`
+export const TotalLabel = styled.label`
   color: var(--title-color);
   font-weight: 500;
 `
 
-export const Value = styled.text`
+export const Value = styled.span`
   color: var(--red);
   font-weight: 500;
   font-size: 1.25rem;
