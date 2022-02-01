@@ -67,7 +67,7 @@ export const BuyCardContainer = styled.div`
   position: relative;
   flex: none;
   width: 322px;
-  height: 260px;
+  /* min-height: 260px; */
 
   box-shadow: 0 0 4px var(--gray-500);
   padding: 0 1.5rem 1.5rem;
@@ -114,6 +114,10 @@ export const Label = styled.label`
 
 export const Content = styled.div`
   margin: .5rem 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 export const Input = styled.input`
@@ -138,11 +142,43 @@ export const SimulateShippingButton = styled.button`
   font-weight: 400;
   transition: filter 300ms;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     background-color: var(--primary);
     color: #FFFFFF;
   }
 `
+export const FoundCEP = styled.div`
+  margin-bottom: .5rem;
+`
+
+export const CepContent = styled.span`
+  font-size: 12px;
+  color: var(--text-color);
+`
+
+export const DeliveryValue = styled.div`
+  margin-top: .5rem;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+`
+
+export const DeliveryLabel = styled.label`
+  font-size: 14px;
+  color: var(--text-color);
+`
+
+export const Value = styled.span`
+  font-size: 14px;
+  color: var(--gray-700);
+  font-weight: 500;
+`
+
 
 export const IDontKnowCEP = styled.button`
   width: 100px;

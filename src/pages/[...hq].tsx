@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import { FaHeart } from 'react-icons/fa'
 
-import { api, apiAuthenticate } from '../services/api'
+import { Oval } from 'react-loader-spinner'
+
+import { api, apiAuthenticate, cepAPI } from '../services/api'
 
 import { CardHqDetails } from '../components/CardHqDetails'
 import { Footer } from '../components/Footer'
@@ -33,7 +35,12 @@ import {
   AddToCarButton,
   AddToFavoritesButton,
   YouCanLikeTitle,
-  YouCanLikeContainer
+  YouCanLikeContainer,
+  FoundCEP,
+  CepContent,
+  DeliveryValue,
+  DeliveryLabel,
+  Value
 } from '../styles/hq'
 
 interface Query {
@@ -64,12 +71,55 @@ interface HQ {
   }
 }
 
+interface CEP {
+  bairro: string
+  localidade: string
+  logradouro: string
+  uf: string
+}
+
 export default function HQ() {
   const [comicsDetails, setComicsDetails] = useState<HQ>({} as HQ)
+  const [inputCEP, setInputCEP] = useState('')
+  const [foundCEP, setFoundCEP] = useState<CEP>({} as CEP)
+  const [searchingCEP, setSearchingCEP] = useState(false)
 
   const router = useRouter()
 
   const { hqID, isRare } = router.query
+
+  function handleFindCEP(event: FormEvent) {
+    event.preventDefault()
+    setSearchingCEP(true)
+
+    if (inputCEP === '') {
+      setSearchingCEP(false)
+      return
+    }
+
+    cepAPI.get(`${inputCEP ? inputCEP : '00000000'}/json/`)
+      .then(response => {
+        const { bairro, localidade, logradouro, uf } = response.data as CEP
+
+        setTimeout(() => {
+          setFoundCEP({
+            bairro,
+            localidade,
+            logradouro,
+            uf
+          })
+
+          setSearchingCEP(false)
+
+        }, 3000)
+
+      }).catch(error => {
+        console.log(error)
+        setSearchingCEP(false)
+      })
+
+    setInputCEP('')
+  }
 
   useEffect(() => {
     api.get(`comics/${hqID}${apiAuthenticate}`)
@@ -144,10 +194,35 @@ export default function HQ() {
                 <Label>Consulte o prazo de entrega</Label>
 
                 <Content>
-                  <Input placeholder='Digite o CEP' />
+                  <Input
+                    placeholder='Digite o CEP'
+                    value={inputCEP}
+                    // @ts-ignore
+                    onChange={(e: FormEvent) => setInputCEP(e.target.value)}
+                  />
 
-                  <SimulateShippingButton>Consultar</SimulateShippingButton>
+                  <SimulateShippingButton
+                    onClick={handleFindCEP}
+                  >
+                    {searchingCEP
+                      ? <Oval color="#00BFFF" height={14} width={14} />
+                      : 'Consultar'}
+                  </SimulateShippingButton>
                 </Content>
+
+                {foundCEP.bairro && (
+                  <FoundCEP>
+                    <CepContent>
+                      {`${foundCEP.logradouro}, ${foundCEP.bairro}, ${foundCEP.localidade} - ${foundCEP.uf}`}
+                    </CepContent>
+
+                    <DeliveryValue>
+                      <DeliveryLabel>Valor da entrega:</DeliveryLabel>
+
+                      <Value>R$ 10,00</Value>
+                    </DeliveryValue>
+                  </FoundCEP>
+                )}
 
                 <IDontKnowCEP>Não sei meu CEP</IDontKnowCEP>
               </FormFretContainer>

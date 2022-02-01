@@ -9,3 +9,7 @@ const md5 = process.env.NEXT_PUBLIC_MD5
 const ts = '1643628283'
 
 export const apiAuthenticate = `?ts=${ts}&apikey=${publicKey}&hash=${md5}`
+
+export const cepAPI = axios.create({
+  baseURL: 'https://viacep.com.br/ws'
+})
