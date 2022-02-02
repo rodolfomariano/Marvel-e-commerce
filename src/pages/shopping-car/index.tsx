@@ -1,5 +1,7 @@
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { setCookies, getCookie } from 'cookies-next'
 
 import { FaBoxOpen, FaMapMarkedAlt, FaWallet, FaCheck } from 'react-icons/fa'
 
@@ -47,8 +49,33 @@ import {
   BuyMoreButton
 } from './shoppingCar'
 
+interface CarList {
+  id: string
+  title: string
+  isRare: string
+  fullThumbnail: string
+  amount: number
+  hqPrice: number
+}
+
 export default function ShoppingCar() {
   const [progressBar, setProgressBar] = useState(0)
+  const [car, setCar] = useState<CarList[]>([])
+
+
+  const subTotal = car.reduce((sumTotal, product) => {
+    return sumTotal += product.hqPrice * product.amount
+  }, 0)
+
+  console.log(subTotal)
+
+  useEffect(() => {
+    const getCarList: any = localStorage.getItem('car')
+
+    if (getCarList) {
+      setCar(JSON.parse(getCarList))
+    }
+  }, [])
 
   return (
     <Body>
@@ -111,15 +138,25 @@ export default function ShoppingCar() {
 
           <CarContainer>
             <RequestsList>
-              <RequestCard />
-              <RequestCard />
+              {car.map(item => (
+                <RequestCard
+                  key={item.id}
+                  title={item.id}
+                  amount={item.amount}
+                  fullThumbnail={item.fullThumbnail}
+                  hqPrice={(item.hqPrice)}
+                  isRare={item.isRare}
+                />
+
+              ))}
+
             </RequestsList>
 
             <ValueContainer>
               <SubTotal>
-                <SubTotalText>Subtotal <Span>(1 item)</Span></SubTotalText>
+                <SubTotalText>Subtotal <Span>({car.length > 1 ? `${car.length} itens` : `${car.length} item`})</Span></SubTotalText>
 
-                <SubTotalValue>R$ 35,50</SubTotalValue>
+                <SubTotalValue>R$ {subTotal}</SubTotalValue>
               </SubTotal>
 
               <Divider />

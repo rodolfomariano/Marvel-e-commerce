@@ -141,7 +141,7 @@ export const SubTotal = styled.div`
 
 `
 
-export const SubTotalText = styled.text`
+export const SubTotalText = styled.span`
   color: var(--text-color);
 `
 
@@ -149,7 +149,7 @@ export const Span = styled.span`
 
 `
 
-export const SubTotalValue = styled.text`
+export const SubTotalValue = styled.span`
   color: var(--red);
   font-weight: 500;
   margin-bottom: 1rem;

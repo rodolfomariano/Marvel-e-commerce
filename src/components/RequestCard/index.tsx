@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Image from 'next/image'
 
 import { FiMinus, FiPlus } from 'react-icons/fi'
@@ -21,40 +22,57 @@ import {
   Button
 } from './styles'
 
-export function RequestCard() {
+interface RequestCard {
+  title: string
+  isRare: string
+  fullThumbnail: string
+  amount: number
+  hqPrice: number
+}
+
+export function RequestCard({ title, isRare, fullThumbnail, amount, hqPrice }: RequestCard) {
+  const [totalAmount, setTotalAmount] = useState(amount)
+
   return (
     <Container>
       <ImageContainer>
-        <Image alt='hq image' src={Wolverine} width={90} height={136} />
+        <Image alt='hq image' src={fullThumbnail} width={90} height={136} />
 
-        <RareTag>
-          <RareContent>
-            <FaCrown size={20} />
-            <RateText>Raro</RateText>
-          </RareContent>
-        </RareTag>
+        {isRare === 'true' && (
+          <RareTag>
+            <RareContent>
+              <FaCrown size={20} />
+              <RateText>Raro</RateText>
+            </RareContent>
+          </RareTag>
+
+        )}
       </ImageContainer>
 
       <Content>
 
-        <HQTitle>Wolverine o imortal</HQTitle>
+        <HQTitle>{title}</HQTitle>
 
         <ValueContainer>
           <AmountContainer>
-            <Button>
+            <Button
+              onClick={() => setTotalAmount(totalAmount > 1 ? totalAmount - 1 : totalAmount)}
+            >
               <FiMinus size={16} />
             </Button>
 
-            <InputValue />
+            <InputValue value={totalAmount} />
 
-            <Button>
+            <Button
+              onClick={() => setTotalAmount(totalAmount + 1)}
+            >
               <FiPlus size={16} />
             </Button>
           </AmountContainer>
 
           <Separator />
 
-          <Value>R$ 35,50</Value>
+          <Value>R$ {hqPrice * totalAmount}</Value>
 
         </ValueContainer>
 

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FaHeart } from 'react-icons/fa'
 
 import { Oval } from 'react-loader-spinner'
+import { setCookies } from 'cookies-next'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -52,6 +53,7 @@ interface Query {
 }
 
 interface HQ {
+  id: string,
   title: string
   modified: string
   dateFormatted: string
@@ -81,6 +83,15 @@ interface CEP {
   uf: string
 }
 
+interface CarList {
+  id: string
+  title: string
+  isRare: string
+  fullThumbnail: string
+  amount: number
+  hqPrice: number
+}
+
 export default function HQ() {
   const [comicsDetails, setComicsDetails] = useState<HQ>({} as HQ)
   const [inputCEP, setInputCEP] = useState('')
@@ -89,7 +100,11 @@ export default function HQ() {
 
   const router = useRouter()
 
-  const { hqID, isRare } = router.query
+  const { isRare } = router.query
+
+  let getHqId: any = ''
+  // let isRare: any = ''
+
 
   const notifyCepError = () => toast("Digite um CEP valido!", {
     autoClose: 3000,
@@ -97,6 +112,57 @@ export default function HQ() {
     closeButton: true,
     theme: 'colored'
   })
+
+  const notifyAddToCarSuccess = () => toast("Adicionado com sucesso!", {
+    autoClose: 3000,
+    type: 'success',
+    closeButton: true,
+    theme: 'colored'
+  })
+
+  const notifyAddToCarError = () => toast("Erro ao adicionar!", {
+    autoClose: 3000,
+    type: 'error',
+    closeButton: true,
+    theme: 'colored'
+  })
+
+
+  function handleAddToCar(event: FormEvent) {
+    event.preventDefault()
+
+    const parseData = localStorage.getItem('car')
+    let carList: any = []
+    let dataString = ''
+
+    const carItem = {
+      id: comicsDetails.id,
+      title: comicsDetails.title,
+      isRare,
+      fullThumbnail: comicsDetails.fullThumbnail,
+      amount: 1,
+      hqPrice: comicsDetails.hqPrice
+    }
+
+    try {
+      if (parseData) {
+        carList = JSON.parse(parseData)
+        dataString = JSON.stringify([...carList, carItem])
+
+      } else {
+        dataString = JSON.stringify([carItem])
+      }
+
+      localStorage.setItem('car', dataString)
+
+      notifyAddToCarSuccess()
+
+    } catch (error) {
+      notifyAddToCarError()
+      console.log(error)
+    }
+  }
+
 
   function handleFindCEP(event: FormEvent) {
     event.preventDefault()
@@ -118,6 +184,7 @@ export default function HQ() {
             logradouro,
             uf
           })
+          localStorage.setItem('cep', inputCEP)
 
           setSearchingCEP(false)
 
@@ -134,7 +201,14 @@ export default function HQ() {
   }
 
   useEffect(() => {
-    api.get(`comics/${hqID}${apiAuthenticate}`)
+    const urlParams = new URLSearchParams(location.search)
+
+    getHqId = urlParams.get('hqID')
+
+  }, [])
+
+  useEffect(() => {
+    api.get(`comics/${getHqId}${apiAuthenticate}`)
       .then(response => {
         const { title, description, thumbnail, pageCount, modified, prices, textObjects, creators } = response.data.data.results[0] as HQ
 
@@ -148,6 +222,7 @@ export default function HQ() {
           : `${modified.substring(8, 10)}/${modified.substring(5, 7)}/${modified.substring(0, 4)}`
 
         const result = {
+          id: getHqId,
           title,
           modified,
           dateFormatted,
@@ -170,6 +245,8 @@ export default function HQ() {
 
       })
   }, [])
+
+
 
   return (
     <Body>
@@ -215,6 +292,7 @@ export default function HQ() {
 
                   <SimulateShippingButton
                     onClick={handleFindCEP}
+                    disabled={searchingCEP}
                   >
                     {searchingCEP
                       ? <Oval color="#00BFFF" height={14} width={14} />
@@ -241,7 +319,11 @@ export default function HQ() {
 
               <BuyCardFooter>
                 <Actions>
-                  <AddToCarButton>Add to car</AddToCarButton>
+                  <AddToCarButton
+                    onClick={handleAddToCar}
+                  >
+                    Add to car
+                  </AddToCarButton>
 
                   <AddToFavoritesButton>
                     <FaHeart size={20} />
