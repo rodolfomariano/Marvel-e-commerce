@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import { FiMinus, FiPlus } from 'react-icons/fi'
@@ -23,6 +23,7 @@ import {
 } from './styles'
 
 interface RequestCard {
+  id: string
   title: string
   isRare: string
   fullThumbnail: string
@@ -30,8 +31,60 @@ interface RequestCard {
   hqPrice: number
 }
 
-export function RequestCard({ title, isRare, fullThumbnail, amount, hqPrice }: RequestCard) {
+export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice }: RequestCard) {
   const [totalAmount, setTotalAmount] = useState(amount)
+  const [car, setCar] = useState<RequestCard[]>([])
+
+
+  const withoutTheItem = car.filter(item => item.id !== id && item)
+  // console.log(`arrai sem o item ${arraySemOitem}`)
+  // const arraySemOitem = car.filter(item => item.id !== id)
+
+  // car.filter(item => item.id === id
+  //   && localStorage.setItem('car', JSON.stringify([
+  //     ...arraySemOitem, { ...item, amount: totalAmount + 1 }
+  //   ])))
+  // const amountT = car.filter(item => item.id === id)
+
+  function handleAddItem() {
+    setTotalAmount(totalAmount + 1)
+
+    // const findHq = car.find(item => item.id === id)
+    localStorage.setItem('car', JSON.stringify([...withoutTheItem, {
+      id: id,
+      title: title,
+      isRare: isRare,
+      fullThumbnail: fullThumbnail,
+      amount: totalAmount + 1,
+      hqPrice: hqPrice
+    }]))
+
+
+    // localStorage.setItem('car', JSON.stringify(car))
+
+  }
+
+  function handleRemoveItem() {
+    setTotalAmount(totalAmount > 1 ? totalAmount - 1 : totalAmount)
+
+    localStorage.setItem('car', JSON.stringify([...withoutTheItem, {
+      id: id,
+      title: title,
+      isRare: isRare,
+      fullThumbnail: fullThumbnail,
+      amount: totalAmount - 1,
+      hqPrice: hqPrice
+    }]))
+  }
+
+
+  useEffect(() => {
+    const getCarList: any = localStorage.getItem('car')
+
+    if (getCarList) {
+      setCar(JSON.parse(getCarList))
+    }
+  }, [])
 
   return (
     <Container>
@@ -56,7 +109,7 @@ export function RequestCard({ title, isRare, fullThumbnail, amount, hqPrice }: R
         <ValueContainer>
           <AmountContainer>
             <Button
-              onClick={() => setTotalAmount(totalAmount > 1 ? totalAmount - 1 : totalAmount)}
+              onClick={handleRemoveItem}
             >
               <FiMinus size={16} />
             </Button>
@@ -64,7 +117,7 @@ export function RequestCard({ title, isRare, fullThumbnail, amount, hqPrice }: R
             <InputValue value={totalAmount} />
 
             <Button
-              onClick={() => setTotalAmount(totalAmount + 1)}
+              onClick={handleAddItem}
             >
               <FiPlus size={16} />
             </Button>

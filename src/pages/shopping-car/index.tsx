@@ -62,12 +62,11 @@ export default function ShoppingCar() {
   const [progressBar, setProgressBar] = useState(0)
   const [car, setCar] = useState<CarList[]>([])
 
-
   const subTotal = car.reduce((sumTotal, product) => {
     return sumTotal += product.hqPrice * product.amount
   }, 0)
 
-  console.log(subTotal)
+  console.log(car)
 
   useEffect(() => {
     const getCarList: any = localStorage.getItem('car')
@@ -75,7 +74,8 @@ export default function ShoppingCar() {
     if (getCarList) {
       setCar(JSON.parse(getCarList))
     }
-  }, [])
+
+  }, [subTotal])
 
   return (
     <Body>
@@ -141,6 +141,7 @@ export default function ShoppingCar() {
               {car.map(item => (
                 <RequestCard
                   key={item.id}
+                  id={item.id}
                   title={item.id}
                   amount={item.amount}
                   fullThumbnail={item.fullThumbnail}
