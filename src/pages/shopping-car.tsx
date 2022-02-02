@@ -5,9 +5,9 @@ import { setCookies, getCookie } from 'cookies-next'
 
 import { FaBoxOpen, FaMapMarkedAlt, FaWallet, FaCheck } from 'react-icons/fa'
 
-import { Footer } from '../../components/Footer'
-import { Header } from '../../components/Header'
-import { RequestCard } from '../../components/RequestCard'
+import { Footer } from '../components/Footer'
+import { Header } from '../components/Header'
+import { RequestCard } from '../components/RequestCard'
 
 import {
   Body,
@@ -47,7 +47,7 @@ import {
   Value,
   ContinueButton,
   BuyMoreButton
-} from './shoppingCar'
+} from '../styles/shoppingCar'
 
 interface CarList {
   id: string
