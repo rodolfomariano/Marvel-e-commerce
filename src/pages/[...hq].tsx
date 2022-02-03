@@ -5,12 +5,14 @@ import Link from 'next/link'
 import { FaHeart } from 'react-icons/fa'
 
 import { Oval } from 'react-loader-spinner'
-import { setCookies } from 'cookies-next'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { api, apiAuthenticate, cepAPI } from '../services/api'
+
+import { useCar } from '../hooks/car'
+import { coinFormat } from '../services/coinFormat'
 
 import { CardHqDetails } from '../components/CardHqDetails'
 import { Footer } from '../components/Footer'
@@ -46,8 +48,6 @@ import {
   DeliveryLabel,
   Value
 } from '../styles/hq'
-import { useCar } from '../hooks/car'
-import { coinFormat } from '../services/coinFormat'
 
 interface Query {
   hqID: string
@@ -239,7 +239,7 @@ export default function HQ() {
                 <Text>Disponibilidade: Pronta entrega</Text>
               </HQAvailability>
 
-              <HQPrice>{coinFormat(comicsDetails.hqPrice)}</HQPrice>
+              <HQPrice>{comicsDetails && coinFormat(comicsDetails.hqPrice)}</HQPrice>
 
               <FormFretContainer>
                 <Label>Consulte o prazo de entrega</Label>
