@@ -49,7 +49,8 @@ https://firebasestorage.googleapis.com/v0/b/imagens-3dce0.appspot.com/o/mv-gif.g
 <p>
   <ul>
     <li>Sessão as mais queridas</li>
-    <li>Os filtros e busca</li>   
+    <li>Os filtros e busca</li>
+    <li>Botão adicionar ao favoritos</li>
   </ul>
 </p>
 
