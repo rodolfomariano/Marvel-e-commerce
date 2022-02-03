@@ -46,6 +46,7 @@ import {
   DeliveryLabel,
   Value
 } from '../styles/hq'
+import { useCar } from '../hooks/car'
 
 interface Query {
   hqID: string
@@ -98,6 +99,8 @@ export default function HQ() {
   const [foundCEP, setFoundCEP] = useState<CEP>({} as CEP)
   const [searchingCEP, setSearchingCEP] = useState(false)
 
+  const { handleAddToCar } = useCar()
+
   const router = useRouter()
 
   const { isRare } = router.query
@@ -105,6 +108,14 @@ export default function HQ() {
   let getHqId: any = ''
   // let isRare: any = ''
 
+  const carItem = {
+    id: comicsDetails.id,
+    title: comicsDetails.title,
+    isRare: String(isRare),
+    fullThumbnail: comicsDetails.fullThumbnail,
+    amount: 1,
+    hqPrice: comicsDetails.hqPrice
+  }
 
   const notifyCepError = () => toast("Digite um CEP valido!", {
     autoClose: 3000,
@@ -112,56 +123,6 @@ export default function HQ() {
     closeButton: true,
     theme: 'colored'
   })
-
-  const notifyAddToCarSuccess = () => toast("Adicionado com sucesso!", {
-    autoClose: 3000,
-    type: 'success',
-    closeButton: true,
-    theme: 'colored'
-  })
-
-  const notifyAddToCarError = () => toast("Erro ao adicionar!", {
-    autoClose: 3000,
-    type: 'error',
-    closeButton: true,
-    theme: 'colored'
-  })
-
-
-  function handleAddToCar(event: FormEvent) {
-    event.preventDefault()
-
-    const parseData = localStorage.getItem('car')
-    let carList: any = []
-    let dataString = ''
-
-    const carItem = {
-      id: comicsDetails.id,
-      title: comicsDetails.title,
-      isRare,
-      fullThumbnail: comicsDetails.fullThumbnail,
-      amount: 1,
-      hqPrice: comicsDetails.hqPrice
-    }
-
-    try {
-      if (parseData) {
-        carList = JSON.parse(parseData)
-        dataString = JSON.stringify([...carList, carItem])
-
-      } else {
-        dataString = JSON.stringify([carItem])
-      }
-
-      localStorage.setItem('car', dataString)
-
-      notifyAddToCarSuccess()
-
-    } catch (error) {
-      notifyAddToCarError()
-      console.log(error)
-    }
-  }
 
 
   function handleFindCEP(event: FormEvent) {
@@ -320,7 +281,7 @@ export default function HQ() {
               <BuyCardFooter>
                 <Actions>
                   <AddToCarButton
-                    onClick={handleAddToCar}
+                    onClick={() => handleAddToCar(carItem)}
                   >
                     Add to car
                   </AddToCarButton>

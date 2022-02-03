@@ -5,6 +5,8 @@ import { FaCrown, FaStar, FaStarHalfAlt, FaShoppingCart, FaHeart } from 'react-i
 
 import Wolverine from '../../assets/images/wolverine.png'
 
+import { useCar } from '../../hooks/car'
+
 import {
   Container,
   ImageContainer,
@@ -29,8 +31,20 @@ interface SmallCardProps {
   isRare: true | false
 }
 
+
 export function SmallCard({ hqID, title, price, image, isRare }: SmallCardProps) {
   const router = useRouter()
+
+  const item = {
+    id: String(hqID),
+    title: title,
+    isRare: String(isRare),
+    fullThumbnail: image,
+    amount: 1,
+    hqPrice: price
+  }
+
+  const { handleAddToCar } = useCar()
 
   return (
     <Container>
@@ -77,7 +91,9 @@ export function SmallCard({ hqID, title, price, image, isRare }: SmallCardProps)
         Saiba Mais
       </KnowMoreButton>
 
-      <AddToCarButton>
+      <AddToCarButton
+        onClick={() => handleAddToCar(item)}
+      >
         <FaShoppingCart
           size={20}
           color='#FFFFFF'

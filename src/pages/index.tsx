@@ -37,6 +37,7 @@ import {
   NextButton,
   PageButton
 } from '../styles/home'
+import { ToastContainer } from 'react-toastify'
 
 interface HQ {
   id: number
@@ -242,6 +243,8 @@ const Home: NextPage = () => {
 
       </Main>
       <Footer />
+
+      <ToastContainer />
     </Body>
   )
 }
