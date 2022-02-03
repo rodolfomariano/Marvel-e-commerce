@@ -69,23 +69,25 @@ export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice 
     setTotalAmount(totalAmount > 1 ? totalAmount - 1 : totalAmount)
 
 
-    localStorage.setItem('car', JSON.stringify([...withoutTheItem, {
-      id: id,
-      title: title,
-      isRare: isRare,
-      fullThumbnail: fullThumbnail,
-      amount: totalAmount - 1,
-      hqPrice: hqPrice
-    }]))
+    if (totalAmount > 1) {
+      localStorage.setItem('car', JSON.stringify([...withoutTheItem, {
+        id: id,
+        title: title,
+        isRare: isRare,
+        fullThumbnail: fullThumbnail,
+        amount: totalAmount - 1,
+        hqPrice: hqPrice
+      }]))
 
-    setCar([...withoutTheItem, {
-      id: id,
-      title: title,
-      isRare: isRare,
-      fullThumbnail: fullThumbnail,
-      amount: totalAmount - 1,
-      hqPrice: hqPrice
-    }])
+      setCar([...withoutTheItem, {
+        id: id,
+        title: title,
+        isRare: isRare,
+        fullThumbnail: fullThumbnail,
+        amount: totalAmount - 1,
+        hqPrice: hqPrice
+      }])
+    }
 
   }
 

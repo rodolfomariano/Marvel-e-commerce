@@ -133,8 +133,13 @@ export const RemoveItem = styled.button`
   border: none;
   background-color: var(--red);
   color: #FFFFFF;
+  transition: filter 300ms;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    filter: brightness(.9);
+  }
 `
