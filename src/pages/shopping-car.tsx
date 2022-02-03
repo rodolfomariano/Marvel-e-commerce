@@ -142,7 +142,7 @@ export default function ShoppingCar() {
                 <RequestCard
                   key={item.id}
                   id={item.id}
-                  title={item.id}
+                  title={item.title}
                   amount={item.amount}
                   fullThumbnail={item.fullThumbnail}
                   hqPrice={(item.hqPrice)}
