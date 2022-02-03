@@ -12,6 +12,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import { api, apiAuthenticate, cepAPI } from '../services/api'
 
 import { useCar } from '../hooks/car'
+import { useCep } from '../hooks/cep'
+
 import { coinFormat } from '../services/coinFormat'
 
 import { CardHqDetails } from '../components/CardHqDetails'
@@ -96,9 +98,8 @@ interface CarList {
 
 export default function HQ() {
   const [comicsDetails, setComicsDetails] = useState<HQ>({} as HQ)
-  const [inputCEP, setInputCEP] = useState('')
-  const [foundCEP, setFoundCEP] = useState<CEP>({} as CEP)
-  const [searchingCEP, setSearchingCEP] = useState(false)
+
+  const { inputCEP, setInputCEP, handleFindCEP, foundCEP, searchingCEP } = useCep()
 
   const { handleAddToCar } = useCar()
 
@@ -118,49 +119,6 @@ export default function HQ() {
     hqPrice: comicsDetails.hqPrice
   }
 
-  const notifyCepError = () => toast("Digite um CEP valido!", {
-    autoClose: 3000,
-    type: 'error',
-    closeButton: true,
-    theme: 'colored'
-  })
-
-
-  function handleFindCEP(event: FormEvent) {
-    event.preventDefault()
-    setSearchingCEP(true)
-
-    if (inputCEP === '') {
-      setSearchingCEP(false)
-      return
-    }
-
-    cepAPI.get(`${inputCEP ? inputCEP : '00000000'}/json/`)
-      .then(response => {
-        const { bairro, localidade, logradouro, uf } = response.data as CEP
-
-        setTimeout(() => {
-          setFoundCEP({
-            bairro,
-            localidade,
-            logradouro,
-            uf
-          })
-          localStorage.setItem('cep', inputCEP)
-
-          setSearchingCEP(false)
-
-        }, 3000)
-
-      }).catch(error => {
-        console.log(error)
-        setSearchingCEP(false)
-
-        notifyCepError()
-      })
-
-    setInputCEP('')
-  }
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search)
@@ -253,7 +211,7 @@ export default function HQ() {
                   />
 
                   <SimulateShippingButton
-                    onClick={handleFindCEP}
+                    onClick={() => handleFindCEP(inputCEP)}
                     disabled={searchingCEP}
                   >
                     {searchingCEP

@@ -1,9 +1,14 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-import { setCookies, getCookie } from 'cookies-next'
+import { useCar } from '../hooks/car'
+import { useCep } from '../hooks/cep'
+
+import { coinFormat } from '../services/coinFormat'
 
 import { FaBoxOpen, FaMapMarkedAlt, FaWallet, FaCheck } from 'react-icons/fa'
+
+import { Oval } from 'react-loader-spinner'
 
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
@@ -42,14 +47,21 @@ import {
   Input,
   SimulateShippingButton,
   IDontKnowCEP,
+  FoundCEP,
+  CepContent,
+  DeliveryValue,
+  DeliveryLabel,
   TotalContainer,
   TotalLabel,
   Value,
+  FormValue,
+  CostOfFreight,
+  CostLabel,
+  FreightValue,
   ContinueButton,
   BuyMoreButton
 } from '../styles/shoppingCar'
-import { useCar } from '../hooks/car'
-import { coinFormat } from '../services/coinFormat'
+import { ToastContainer } from 'react-toastify'
 
 interface CarList {
   id: string
@@ -64,6 +76,8 @@ export default function ShoppingCar() {
   const [progressBar, setProgressBar] = useState(0)
 
   const { getCarList, car, subTotal, subTotalCalc } = useCar()
+
+  const { inputCEP, setInputCEP, handleFindCEP, foundCEP, searchingCEP, freightValue } = useCep()
 
   subTotalCalc()
 
@@ -179,10 +193,42 @@ export default function ShoppingCar() {
                 <Label>Consulte o prazo de entrega</Label>
 
                 <Content>
-                  <Input placeholder='Digite o CEP' />
+                  <Input
+                    placeholder='Digite o CEP'
+                    value={inputCEP}
+                    // @ts-ignore
+                    onChange={(e: FormEvent) => setInputCEP(e.target.value)}
+                  />
 
-                  <SimulateShippingButton>Consultar</SimulateShippingButton>
+                  <SimulateShippingButton
+                    onClick={() => handleFindCEP(inputCEP)}
+                    disabled={searchingCEP}
+                  >
+                    {searchingCEP
+                      ? <Oval color="#00BFFF" height={14} width={14} />
+                      : 'Consultar'}
+                  </SimulateShippingButton>
                 </Content>
+
+                {foundCEP.bairro && (
+                  <FoundCEP>
+                    <CepContent>
+                      {`${foundCEP.logradouro}, ${foundCEP.bairro}, ${foundCEP.localidade} - ${foundCEP.uf}`}
+                    </CepContent>
+
+                    <DeliveryValue>
+                      <DeliveryLabel>Chega até</DeliveryLabel>
+
+                      <FormValue>12 de abril</FormValue>
+                    </DeliveryValue>
+
+                    <CostOfFreight>
+                      <CostLabel>Valor da entrega:</CostLabel>
+
+                      <FreightValue>{coinFormat(freightValue)}</FreightValue>
+                    </CostOfFreight>
+                  </FoundCEP>
+                )}
 
                 <IDontKnowCEP>Não sei meu CEP</IDontKnowCEP>
               </FormFretContainer>
@@ -205,6 +251,8 @@ export default function ShoppingCar() {
       </Main>
 
       <Footer />
+
+      <ToastContainer />
     </Body>
   )
 }
