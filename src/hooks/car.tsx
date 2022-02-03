@@ -1,4 +1,4 @@
-import { createContext, FormEvent, ReactNode, useContext, useState } from 'react'
+import { createContext, FormEvent, ReactNode, useContext, useEffect, useState } from 'react'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -19,7 +19,11 @@ interface CarList {
 interface CarContext {
   handleAddToCar: (item: CarList) => void
   getCarList: () => void
+  subTotalCalc: () => void
+  setCar: (item: CarList[]) => void
   car: CarList[]
+  subTotal: number
+
 }
 
 
@@ -28,6 +32,7 @@ const CarContext = createContext<CarContext>({} as CarContext)
 
 export function CarProvider({ children }: CarProviderProps) {
   const [car, setCar] = useState<CarList[]>([])
+  const [subTotal, setSubTotal] = useState(0)
 
   const notifyAddToCarSuccess = () => toast("Adicionado com sucesso!", {
     autoClose: 3000,
@@ -84,11 +89,23 @@ export function CarProvider({ children }: CarProviderProps) {
       setCar(JSON.parse(getList))
     }
 
-    // setCar(getList)
   }
 
+  function subTotalCalc() {
+
+    const calc = car.reduce((sumTotal, product) => {
+      return sumTotal += product.hqPrice * product.amount
+    }, 0)
+
+    setSubTotal(calc)
+
+    return calc
+  }
+
+
+
   return (
-    <CarContext.Provider value={{ handleAddToCar, getCarList, car }}>
+    <CarContext.Provider value={{ handleAddToCar, getCarList, car, subTotal, subTotalCalc, setCar }}>
       {children}
     </CarContext.Provider>
   )

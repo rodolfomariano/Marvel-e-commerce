@@ -21,6 +21,7 @@ import {
   Value,
   Button
 } from './styles'
+import { useCar } from '../../hooks/car'
 
 interface RequestCard {
   id: string
@@ -33,23 +34,15 @@ interface RequestCard {
 
 export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice }: RequestCard) {
   const [totalAmount, setTotalAmount] = useState(amount)
-  const [car, setCar] = useState<RequestCard[]>([])
+  // const [car, setCar] = useState<RequestCard[]>([])
 
+  const { car, subTotalCalc, setCar } = useCar()
 
   const withoutTheItem = car.filter(item => item.id !== id && item)
-  // console.log(`arrai sem o item ${arraySemOitem}`)
-  // const arraySemOitem = car.filter(item => item.id !== id)
 
-  // car.filter(item => item.id === id
-  //   && localStorage.setItem('car', JSON.stringify([
-  //     ...arraySemOitem, { ...item, amount: totalAmount + 1 }
-  //   ])))
-  // const amountT = car.filter(item => item.id === id)
-
-  function handleAddItem() {
+  function handleIncrementItem() {
     setTotalAmount(totalAmount + 1)
 
-    // const findHq = car.find(item => item.id === id)
     localStorage.setItem('car', JSON.stringify([...withoutTheItem, {
       id: id,
       title: title,
@@ -59,13 +52,20 @@ export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice 
       hqPrice: hqPrice
     }]))
 
-
-    // localStorage.setItem('car', JSON.stringify(car))
+    setCar([...withoutTheItem, {
+      id: id,
+      title: title,
+      isRare: isRare,
+      fullThumbnail: fullThumbnail,
+      amount: totalAmount + 1,
+      hqPrice: hqPrice
+    }])
 
   }
 
-  function handleRemoveItem() {
+  function handleDecrementItem() {
     setTotalAmount(totalAmount > 1 ? totalAmount - 1 : totalAmount)
+
 
     localStorage.setItem('car', JSON.stringify([...withoutTheItem, {
       id: id,
@@ -75,16 +75,28 @@ export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice 
       amount: totalAmount - 1,
       hqPrice: hqPrice
     }]))
+
+    setCar([...withoutTheItem, {
+      id: id,
+      title: title,
+      isRare: isRare,
+      fullThumbnail: fullThumbnail,
+      amount: totalAmount - 1,
+      hqPrice: hqPrice
+    }])
+
   }
 
 
   useEffect(() => {
-    const getCarList: any = localStorage.getItem('car')
+    // const getCarList: any = localStorage.getItem('car')
 
-    if (getCarList) {
-      setCar(JSON.parse(getCarList))
-    }
-  }, [])
+    // if (getCarList) {
+    //   setCar(JSON.parse(getCarList))
+    // }
+    // subTotalCalc()
+    // console.log('mudou')
+  }, [totalAmount])
 
   return (
     <Container>
@@ -109,7 +121,7 @@ export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice 
         <ValueContainer>
           <AmountContainer>
             <Button
-              onClick={handleRemoveItem}
+              onClick={handleDecrementItem}
             >
               <FiMinus size={16} />
             </Button>
@@ -117,7 +129,7 @@ export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice 
             <InputValue value={totalAmount} />
 
             <Button
-              onClick={handleAddItem}
+              onClick={handleIncrementItem}
             >
               <FiPlus size={16} />
             </Button>
