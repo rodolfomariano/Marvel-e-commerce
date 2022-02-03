@@ -34,7 +34,7 @@ export function Footer() {
 
           <Contact>
             <ContactText>E-mail:</ContactText>
-            <ContactButton>contato@marvelho.com</ContactButton>
+            <ContactButton>contato@marvel.com</ContactButton>
           </Contact>
 
           <Contact>
