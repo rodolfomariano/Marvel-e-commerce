@@ -54,3 +54,24 @@ export const UserButtonAvatar = styled.button`
   border-radius: 50%;
   background: transparent;
 `
+
+export const ButtonCarContainer = styled.div`
+  position: relative;
+`
+
+export const Tag = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 300;
+  width: 16px;
+  height: 16px;
+  background-color: var(--blue);
+  font-size: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`

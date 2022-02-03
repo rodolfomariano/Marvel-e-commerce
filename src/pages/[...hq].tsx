@@ -101,7 +101,7 @@ export default function HQ() {
 
   const { inputCEP, setInputCEP, handleFindCEP, foundCEP, searchingCEP } = useCep()
 
-  const { handleAddToCar, car } = useCar()
+  const { handleAddToCar, car, getCarList } = useCar()
 
   const router = useRouter()
 
@@ -165,7 +165,10 @@ export default function HQ() {
       })
   }, [])
 
+  useEffect(() => {
+    getCarList()
 
+  }, [])
 
   return (
     <Body>

@@ -86,9 +86,7 @@ export default function ShoppingCar() {
 
   function handleAddCoupon(value: string) {
 
-
     try {
-      console.log(coupon)
 
       if (value === 'rare' || value === 'common') {
 

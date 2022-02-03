@@ -38,6 +38,7 @@ import {
   PageButton
 } from '../styles/home'
 import { ToastContainer } from 'react-toastify'
+import { useCar } from '../hooks/car'
 
 interface HQ {
   id: number
@@ -68,6 +69,7 @@ const Home: NextPage = () => {
 
   let hqList: HQ[] = []
 
+  const { getCarList, car } = useCar()
 
   useEffect(() => {
 
@@ -120,8 +122,11 @@ const Home: NextPage = () => {
 
   }, [currentOffset, hqFilter])
 
+  useEffect(() => {
+    getCarList()
 
-  console.log(hqFilter)
+  }, [])
+
   return (
     <Body>
       <Header />

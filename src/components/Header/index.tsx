@@ -10,11 +10,16 @@ import {
   ImageContainer,
   Actions,
   Button,
-  UserButtonAvatar
+  UserButtonAvatar,
+  ButtonCarContainer,
+  Tag
 } from './styles'
+import { useCar } from '../../hooks/car'
 
 export function Header() {
   const router = useRouter()
+
+  const { car } = useCar()
 
   return (
     <Container>
@@ -28,11 +33,16 @@ export function Header() {
             <FaHeart size={24} />
           </Button>
 
-          <Button
-            onClick={() => router.push('shopping-car')}
-          >
-            <FaShoppingCart size={24} />
-          </Button>
+          <ButtonCarContainer>
+            <Button
+              onClick={() => router.push('shopping-car')}
+            >
+              <FaShoppingCart size={24} />
+
+            </Button>
+            <Tag>{car.length}</Tag>
+
+          </ButtonCarContainer>
 
           <UserButtonAvatar>
 
