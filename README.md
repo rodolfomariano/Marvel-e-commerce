@@ -45,8 +45,13 @@ https://firebasestorage.googleapis.com/v0/b/imagens-3dce0.appspot.com/o/mv-gif.g
 </p>
 
 <h2>⚠️ Obs: Elementos apenas visuais:</h2>
-<li>*Sessão as mais queridas</li>
-<li>*Os filtros e busca</li>
+
+<p>
+  <ul>
+    <li>*Sessão as mais queridas</li>
+    <li>*Os filtros e busca</li>   
+  </ul>
+</p>
 
 ❌ Testes não implementados!
 
