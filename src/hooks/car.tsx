@@ -74,8 +74,11 @@ export function CarProvider({ children }: CarProviderProps) {
         carList = JSON.parse(parseData)
         dataString = JSON.stringify([...carList, carItem])
 
+        setCar([...carList, carItem])
+
       } else {
         dataString = JSON.stringify([carItem])
+        setCar([carItem])
       }
 
       localStorage.setItem('car', dataString)
