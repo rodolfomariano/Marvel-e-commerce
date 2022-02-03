@@ -22,14 +22,22 @@
 
 ## :computer: Project
 
-Projeto desenvolvido para o processo seletivo da <a href="https://neoapp.com.br" target="_blank">Visit!</a>
+Projeto desenvolvido para o processo seletivo da <a href="https://neoapp.com.br" target="_blank">NEO</a>
 
-<p>
-  Use expo to test this project.
-</p>
 
 <p>
   Demo do project: <a href="https://marvel-e-commerce.vercel.app/" target="_blank">Projeto marvel-e-commerce!</a>
+</p>
+
+<p>
+  Para desenvolver esse projeto optei em usar o NextJS, por sua capacidade de expandir, uma vez que se trata de um e-commerce e o NexteJs pode trabalhar com SSR e SSG.
+</p>
+
+<p>
+  Para lidar com o contexto optei por usar o context do próprio React.
+</p>
+<p>
+  Na busca por cep utilizei a api <a href="https://viacep.com.br/" target="_blank">viacep</a>
 </p>
 
 ## :rocket: Getting Started
