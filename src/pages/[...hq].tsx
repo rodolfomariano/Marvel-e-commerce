@@ -239,7 +239,7 @@ export default function HQ() {
                 <Text>Disponibilidade: Pronta entrega</Text>
               </HQAvailability>
 
-              <HQPrice>{comicsDetails && coinFormat(comicsDetails.hqPrice)}</HQPrice>
+              <HQPrice>{coinFormat(Number(comicsDetails.hqPrice))}</HQPrice>
 
               <FormFretContainer>
                 <Label>Consulte o prazo de entrega</Label>
