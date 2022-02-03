@@ -44,7 +44,9 @@ https://firebasestorage.googleapis.com/v0/b/imagens-3dce0.appspot.com/o/mv-gif.g
   Na busca por cep utilizei a api <a href="https://viacep.com.br/" target="_blank">viacep</a>
 </p>
 
-⚠️
+⚠️ <h2>Obs: Elementos apenas visuais:</h2>
+<span>*Sessão as mais queridas</span>
+<span>*Os filtros e busca</span>
 
 ❌ Testes não implementados!
 
