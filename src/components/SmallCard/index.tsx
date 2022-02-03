@@ -6,6 +6,7 @@ import { FaCrown, FaStar, FaStarHalfAlt, FaShoppingCart, FaHeart } from 'react-i
 import Wolverine from '../../assets/images/wolverine.png'
 
 import { useCar } from '../../hooks/car'
+import { coinFormat } from '../../services/coinFormat'
 
 import {
   Container,
@@ -50,7 +51,7 @@ export function SmallCard({ hqID, title, price, image, isRare }: SmallCardProps)
     <Container>
       <ImageContainer>
         <ImageHeader>
-          <Price>R$ {price}</Price>
+          <Price>{coinFormat(price)}</Price>
 
           <StarsContainer>
             <FaStar size={12} />

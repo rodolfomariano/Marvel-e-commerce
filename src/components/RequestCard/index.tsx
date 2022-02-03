@@ -22,6 +22,7 @@ import {
   Button
 } from './styles'
 import { useCar } from '../../hooks/car'
+import { coinFormat } from '../../services/coinFormat'
 
 interface RequestCard {
   id: string
@@ -137,7 +138,7 @@ export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice 
 
           <Separator />
 
-          <Value>R$ {hqPrice * totalAmount}</Value>
+          <Value>{coinFormat(hqPrice * totalAmount)}</Value>
 
         </ValueContainer>
 

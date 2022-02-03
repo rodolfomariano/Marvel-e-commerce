@@ -47,6 +47,7 @@ import {
   Value
 } from '../styles/hq'
 import { useCar } from '../hooks/car'
+import { coinFormat } from '../services/coinFormat'
 
 interface Query {
   hqID: string
@@ -238,7 +239,7 @@ export default function HQ() {
                 <Text>Disponibilidade: Pronta entrega</Text>
               </HQAvailability>
 
-              <HQPrice>R$ {comicsDetails.hqPrice}</HQPrice>
+              <HQPrice>{coinFormat(comicsDetails.hqPrice)}</HQPrice>
 
               <FormFretContainer>
                 <Label>Consulte o prazo de entrega</Label>

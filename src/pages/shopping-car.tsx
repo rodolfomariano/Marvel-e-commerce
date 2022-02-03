@@ -49,6 +49,7 @@ import {
   BuyMoreButton
 } from '../styles/shoppingCar'
 import { useCar } from '../hooks/car'
+import { coinFormat } from '../services/coinFormat'
 
 interface CarList {
   id: string
@@ -151,7 +152,7 @@ export default function ShoppingCar() {
               <SubTotal>
                 <SubTotalText>Subtotal <Span>({car.length > 1 ? `${car.length} itens` : `${car.length} item`})</Span></SubTotalText>
 
-                <SubTotalValue>R$ {subTotal}</SubTotalValue>
+                <SubTotalValue>{coinFormat(subTotal)}</SubTotalValue>
               </SubTotal>
 
               <Divider />
