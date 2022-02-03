@@ -1,4 +1,3 @@
-# Marvel-e-commerce
 
 <h1 align="center">Marvel-e-commerce</h1>
 
@@ -43,6 +42,8 @@ Projeto desenvolvido para o processo seletivo da <a href="https://neoapp.com.br"
 <p>
   Na busca por cep utilizei a api <a href="https://viacep.com.br/" target="_blank">viacep</a>
 </p>
+
+❌
 
 ## :rocket: Getting Started
 
