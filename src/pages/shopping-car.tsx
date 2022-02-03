@@ -48,6 +48,7 @@ import {
   ContinueButton,
   BuyMoreButton
 } from '../styles/shoppingCar'
+import { useCar } from '../hooks/car'
 
 interface CarList {
   id: string
@@ -60,22 +61,21 @@ interface CarList {
 
 export default function ShoppingCar() {
   const [progressBar, setProgressBar] = useState(0)
-  const [car, setCar] = useState<CarList[]>([])
+
+  const { getCarList, car } = useCar()
 
   const subTotal = car.reduce((sumTotal, product) => {
     return sumTotal += product.hqPrice * product.amount
   }, 0)
 
+
+
   console.log(car)
 
   useEffect(() => {
-    const getCarList: any = localStorage.getItem('car')
+    getCarList()
 
-    if (getCarList) {
-      setCar(JSON.parse(getCarList))
-    }
-
-  }, [subTotal])
+  }, [])
 
   return (
     <Body>

@@ -1,4 +1,4 @@
-import { createContext, FormEvent, ReactNode, useContext } from 'react'
+import { createContext, FormEvent, ReactNode, useContext, useState } from 'react'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -18,6 +18,8 @@ interface CarList {
 
 interface CarContext {
   handleAddToCar: (item: CarList) => void
+  getCarList: () => void
+  car: CarList[]
 }
 
 
@@ -25,6 +27,7 @@ interface CarContext {
 const CarContext = createContext<CarContext>({} as CarContext)
 
 export function CarProvider({ children }: CarProviderProps) {
+  const [car, setCar] = useState<CarList[]>([])
 
   const notifyAddToCarSuccess = () => toast("Adicionado com sucesso!", {
     autoClose: 3000,
@@ -74,8 +77,18 @@ export function CarProvider({ children }: CarProviderProps) {
     }
   }
 
+  function getCarList() {
+    const getList: any = localStorage.getItem('car')
+
+    if (getList) {
+      setCar(JSON.parse(getList))
+    }
+
+    // setCar(getList)
+  }
+
   return (
-    <CarContext.Provider value={{ handleAddToCar }}>
+    <CarContext.Provider value={{ handleAddToCar, getCarList, car }}>
       {children}
     </CarContext.Provider>
   )
