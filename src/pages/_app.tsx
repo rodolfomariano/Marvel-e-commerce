@@ -5,11 +5,11 @@ import { CepProvider } from '../hooks/cep'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <CarProvider>
-      <CepProvider>
+    <CepProvider>
+      <CarProvider>
         <Component {...pageProps} />
-      </CepProvider>
-    </CarProvider>
+      </CarProvider>
+    </CepProvider>
   )
 }
 

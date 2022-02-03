@@ -245,6 +245,20 @@ export const Input = styled.input`
   }
 `
 
+export const AddCoupon = styled.button`
+  margin-top: .5rem;
+  padding: .25rem 0;
+  background: transparent;
+  border: 1px solid var(--blue-action);
+  color: var(--blue-action);
+  transition: 300ms;
+
+  &:hover {
+    background-color: var(--blue-action);
+    color: #FFFFFF;
+  }
+`
+
 export const SimulateShippingButton = styled.button`
   width: 117px;
   border: none;

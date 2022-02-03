@@ -2,6 +2,7 @@ import { createContext, FormEvent, ReactNode, useContext, useEffect, useState } 
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useCep } from './cep'
 
 interface CarProviderProps {
   children: ReactNode
@@ -22,9 +23,11 @@ interface CarContext {
   subTotalCalc: () => void
   setCar: (item: CarList[]) => void
   removeItem: (id: string) => void
+  setCoupon: (coupon: string) => void
   car: CarList[]
   subTotal: number
-
+  total: number
+  coupon: 'rare' | 'common' | string
 }
 
 
@@ -34,6 +37,8 @@ const CarContext = createContext<CarContext>({} as CarContext)
 export function CarProvider({ children }: CarProviderProps) {
   const [car, setCar] = useState<CarList[]>([])
   const [subTotal, setSubTotal] = useState(0)
+  const [total, setTotal] = useState(0)
+  const [coupon, setCoupon] = useState('')
 
   const notifyAddToCarSuccess = () => toast("Adicionado com sucesso!", {
     autoClose: 3000,
@@ -110,10 +115,46 @@ export function CarProvider({ children }: CarProviderProps) {
     return calc
   }
 
+  function totalCalc() {
+
+    const calc = car.reduce((sumTotal, product) => {
+      return sumTotal += (product.isRare === 'true'
+        ? coupon === 'rare' ? product.hqPrice - (product.hqPrice * 0.1) : product.hqPrice
+        : coupon === 'common' ? product.hqPrice - (product.hqPrice * 0.2) : product.hqPrice
+      ) * product.amount
+    }, 0)
+
+    setTotal(calc)
+
+    return calc
+
+  }
+
+  useEffect(() => {
+
+  }, [])
+
+  console.log(total)
+
+  useEffect(() => {
+    totalCalc()
+  }, [coupon, subTotal])
+
 
 
   return (
-    <CarContext.Provider value={{ handleAddToCar, getCarList, car, subTotal, subTotalCalc, setCar, removeItem }}>
+    <CarContext.Provider value={{
+      handleAddToCar,
+      getCarList,
+      car,
+      subTotal,
+      subTotalCalc,
+      setCar,
+      removeItem,
+      total,
+      coupon,
+      setCoupon
+    }}>
       {children}
     </CarContext.Provider>
   )

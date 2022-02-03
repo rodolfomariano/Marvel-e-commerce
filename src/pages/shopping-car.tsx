@@ -45,6 +45,7 @@ import {
   Label,
   Content,
   Input,
+  AddCoupon,
   SimulateShippingButton,
   IDontKnowCEP,
   FoundCEP,
@@ -75,12 +76,31 @@ interface CarList {
 
 export default function ShoppingCar() {
   const [progressBar, setProgressBar] = useState(0)
+  const [inputCoupon, setInputCoupon] = useState('')
 
-  const { getCarList, car, subTotal, subTotalCalc } = useCar()
+  const { getCarList, car, subTotal, subTotalCalc, setCoupon, coupon, total } = useCar()
 
   const { inputCEP, setInputCEP, handleFindCEP, foundCEP, searchingCEP, freightValue } = useCep()
 
   const router = useRouter()
+
+  function handleAddCoupon(value: string) {
+
+
+    try {
+      console.log(coupon)
+
+      if (value === 'rare' || value === 'common') {
+
+        setCoupon(value)
+      } else {
+        setCoupon('')
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   subTotalCalc()
 
@@ -177,17 +197,30 @@ export default function ShoppingCar() {
               <CouponContainer>
                 <Coupon>
                   <CouponLabel>Cupom de desconto</CouponLabel>
-                  <CouponInput />
+                  <CouponInput
+                    onChange={e => setInputCoupon(e.target.value)}
+                    value={inputCoupon}
+                    placeholder={coupon}
+                  />
                 </Coupon>
+                <AddCoupon
+                  onClick={() => handleAddCoupon(inputCoupon)}
+                >Adicionar</AddCoupon>
 
-                <CouponMessage>Cupom HQ RARO aplicado</CouponMessage>
+                {coupon === 'rare' && (
+                  <CouponMessage>Cupom HQ raro aplicado</CouponMessage>
+                )}
+                {coupon === 'common' && (
+                  <CouponMessage>Cupom HQ comun aplicado</CouponMessage>
+                )}
+
               </CouponContainer>
 
               <Divider />
 
               <DiscountContainer>
                 <DiscountLabel>Desconto</DiscountLabel>
-                <DiscountResult>R$ 1,77</DiscountResult>
+                <DiscountResult>{coinFormat(subTotal - total)}</DiscountResult>
               </DiscountContainer>
 
               <Divider />
@@ -240,7 +273,7 @@ export default function ShoppingCar() {
 
               <TotalContainer>
                 <TotalLabel>Valor total:</TotalLabel>
-                <Value>R$ 33,72</Value>
+                <Value>{coinFormat(total + freightValue)}</Value>
               </TotalContainer>
 
               <ContinueButton>Continuar</ContinueButton>

@@ -21,6 +21,7 @@ interface CepContextData {
   freightValue: number
   setInputCEP: (cep: string) => void
   handleFindCEP: (cep: string) => void
+
 }
 
 
@@ -79,8 +80,10 @@ export function CepProvider({ children }: CepProviderProps) {
   useEffect(() => {
     const findCEP = localStorage.getItem('cep')
 
-    findCEP && handleFindCEP(findCEP)
-
+    if (findCEP) {
+      handleFindCEP(findCEP)
+      setFreightValue(8.00)
+    }
   }, [])
 
   return (
