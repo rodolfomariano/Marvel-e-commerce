@@ -25,8 +25,9 @@ https://firebasestorage.googleapis.com/v0/b/imagens-3dce0.appspot.com/o/mv-gif.g
 
 ## :computer: Project
 
-Projeto desenvolvido para o processo seletivo da <a href="https://neoapp.com.br" target="_blank">NEO</a>
-
+<h4>
+  Projeto desenvolvido para o processo seletivo da <a href="https://neoapp.com.br" target="_blank">NEO</a> para a vaga de dev front-end jn
+</h4>
 
 <p>
   Demo do project: <a href="https://marvel-e-commerce.vercel.app/" target="_blank">Projeto marvel-e-commerce!</a>
