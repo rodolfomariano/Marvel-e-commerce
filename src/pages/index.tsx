@@ -60,6 +60,8 @@ const Home: NextPage = () => {
   const [currentOffset, setCurrentOffset] = useState(0)
   const [totalOfPages, setTotalOfPages] = useState(0)
 
+  const [hqFilter, setHqFilter] = useState('')
+
   const hqRareList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   const [rareHq, setRareHq] = useState(Number(Math.floor(Math.random() * hqRareList.length)))
 
@@ -115,10 +117,10 @@ const Home: NextPage = () => {
 
       })
 
-  }, [currentOffset])
+  }, [currentOffset, hqFilter])
 
 
-
+  console.log(hqFilter)
   return (
     <Body>
       <Header />
@@ -160,7 +162,7 @@ const Home: NextPage = () => {
               <Label>Ordenar por:</Label>
 
               <FilterChoiceContent>
-                <FilterChoiceButton>Mais novo</FilterChoiceButton>
+                <FilterChoiceButton onClick={() => setHqFilter('new')}>Mais novo</FilterChoiceButton>
                 <FilterChoiceButton>Mais antigo</FilterChoiceButton>
                 <FilterChoiceButton>Maior valor</FilterChoiceButton>
                 <FilterChoiceButton>Menor valor</FilterChoiceButton>
