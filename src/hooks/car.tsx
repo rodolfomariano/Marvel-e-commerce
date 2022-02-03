@@ -21,6 +21,7 @@ interface CarContext {
   getCarList: () => void
   subTotalCalc: () => void
   setCar: (item: CarList[]) => void
+  removeItem: (id: string) => void
   car: CarList[]
   subTotal: number
 
@@ -91,6 +92,13 @@ export function CarProvider({ children }: CarProviderProps) {
 
   }
 
+  function removeItem(id: string) {
+    const withoutTheItem = car.filter(item => item.id !== id && item)
+
+    localStorage.setItem('car', JSON.stringify(withoutTheItem))
+    setCar(withoutTheItem)
+  }
+
   function subTotalCalc() {
 
     const calc = car.reduce((sumTotal, product) => {
@@ -105,7 +113,7 @@ export function CarProvider({ children }: CarProviderProps) {
 
 
   return (
-    <CarContext.Provider value={{ handleAddToCar, getCarList, car, subTotal, subTotalCalc, setCar }}>
+    <CarContext.Provider value={{ handleAddToCar, getCarList, car, subTotal, subTotalCalc, setCar, removeItem }}>
       {children}
     </CarContext.Provider>
   )

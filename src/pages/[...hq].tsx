@@ -101,14 +101,13 @@ export default function HQ() {
 
   const { inputCEP, setInputCEP, handleFindCEP, foundCEP, searchingCEP } = useCep()
 
-  const { handleAddToCar } = useCar()
+  const { handleAddToCar, car } = useCar()
 
   const router = useRouter()
 
   const { isRare } = router.query
 
   let getHqId: any = ''
-  // let isRare: any = ''
 
   const carItem = {
     id: comicsDetails.id,

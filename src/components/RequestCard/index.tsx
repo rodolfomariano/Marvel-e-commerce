@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { FiMinus, FiPlus } from 'react-icons/fi'
 import { FaCrown } from 'react-icons/fa'
+import { FiTrash } from 'react-icons/fi'
 
 import Wolverine from '../../assets/images/wolverine.png'
 
@@ -19,7 +20,8 @@ import {
   InputValue,
   Separator,
   Value,
-  Button
+  Button,
+  RemoveItem
 } from './styles'
 import { useCar } from '../../hooks/car'
 import { coinFormat } from '../../services/coinFormat'
@@ -35,9 +37,8 @@ interface RequestCard {
 
 export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice }: RequestCard) {
   const [totalAmount, setTotalAmount] = useState(amount)
-  // const [car, setCar] = useState<RequestCard[]>([])
 
-  const { car, subTotalCalc, setCar } = useCar()
+  const { car, subTotalCalc, setCar, removeItem } = useCar()
 
   const withoutTheItem = car.filter(item => item.id !== id && item)
 
@@ -89,16 +90,6 @@ export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice 
   }
 
 
-  useEffect(() => {
-    // const getCarList: any = localStorage.getItem('car')
-
-    // if (getCarList) {
-    //   setCar(JSON.parse(getCarList))
-    // }
-    // subTotalCalc()
-    // console.log('mudou')
-  }, [totalAmount])
-
   return (
     <Container>
       <ImageContainer>
@@ -143,6 +134,12 @@ export function RequestCard({ id, title, isRare, fullThumbnail, amount, hqPrice 
         </ValueContainer>
 
       </Content>
+
+      <RemoveItem
+        onClick={() => removeItem(id)}
+      >
+        <FiTrash size={16} />
+      </RemoveItem>
 
     </Container>
   )

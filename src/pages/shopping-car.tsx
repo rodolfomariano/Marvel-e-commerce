@@ -62,6 +62,7 @@ import {
   BuyMoreButton
 } from '../styles/shoppingCar'
 import { ToastContainer } from 'react-toastify'
+import { useRouter } from 'next/router'
 
 interface CarList {
   id: string
@@ -78,6 +79,8 @@ export default function ShoppingCar() {
   const { getCarList, car, subTotal, subTotalCalc } = useCar()
 
   const { inputCEP, setInputCEP, handleFindCEP, foundCEP, searchingCEP, freightValue } = useCep()
+
+  const router = useRouter()
 
   subTotalCalc()
 
@@ -242,7 +245,11 @@ export default function ShoppingCar() {
 
               <ContinueButton>Continuar</ContinueButton>
 
-              <BuyMoreButton>Comprar mais</BuyMoreButton>
+              <BuyMoreButton
+                onClick={() => router.push('/')}
+              >
+                Comprar mais
+              </BuyMoreButton>
 
             </ValueContainer>
           </CarContainer>

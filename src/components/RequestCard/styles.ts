@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  position: relative;
   min-width: 350px;
   max-width: 764px;
   height: 166px;
@@ -122,4 +123,18 @@ export const Value = styled.h2`
   font-size: 1.5rem;
   color: var(--red);
   font-weight: 500;
+`
+export const RemoveItem = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: var(--red);
+  color: #FFFFFF;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
