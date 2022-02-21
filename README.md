@@ -23,7 +23,7 @@ https://firebasestorage.googleapis.com/v0/b/imagens-3dce0.appspot.com/o/mv-gif.g
   </li>
 </ul>
 
-## :computer: Project
+## :computer: Project 
 
 <h4>
   Projeto desenvolvido para o processo seletivo da <a href="https://neoapp.com.br" target="_blank">NEO</a> para a vaga de dev front-end jr
